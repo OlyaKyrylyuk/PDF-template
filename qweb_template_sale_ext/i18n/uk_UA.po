@@ -6,21 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-31 07:57+0000\n"
-"PO-Revision-Date: 2024-07-31 07:57+0000\n"
+"POT-Creation-Date: 2024-07-31 08:28+0000\n"
+"PO-Revision-Date: 2024-07-31 08:28+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: qweb_template_sale_ext
-#: model_terms:ir.ui.view,arch_db:qweb_template_sale_ext.report_saleorder_custom
-msgid ""
-",\n"
-"Certificate Number:"
-msgstr " номер свідоцтва: "
 
 #. module: qweb_template_sale_ext
 #: model_terms:ir.ui.view,arch_db:qweb_template_sale_ext.report_saleorder_custom
@@ -34,6 +27,15 @@ msgstr "МФО:"
 
 #. module: qweb_template_sale_ext
 #: model_terms:ir.ui.view,arch_db:qweb_template_sale_ext.report_saleorder_custom
+msgid ""
+"<span>Signed:</span>\n"
+"                    <span>______________________________</span>"
+msgstr ""
+"<span>Виписав:</span>\n"
+"                    <span>_________________________________</span>"
+
+#. module: qweb_template_sale_ext
+#: model_terms:ir.ui.view,arch_db:qweb_template_sale_ext.report_saleorder_custom
 msgid "Address:"
 msgstr "Адреса:"
 
@@ -41,6 +43,11 @@ msgstr "Адреса:"
 #: model:ir.model.fields,field_description:qweb_template_sale_ext.field_res_company__certificate_number
 msgid "Certificate Number"
 msgstr " номер свідоцтва:"
+
+#. module: qweb_template_sale_ext
+#: model_terms:ir.ui.view,arch_db:qweb_template_sale_ext.report_saleorder_custom
+msgid "Certificate Number:"
+msgstr "номер свідоцтва:"
 
 #. module: qweb_template_sale_ext
 #: model:ir.model,name:qweb_template_sale_ext.model_res_company
@@ -65,7 +72,7 @@ msgstr "ІПН:"
 #. module: qweb_template_sale_ext
 #: model_terms:ir.ui.view,arch_db:qweb_template_sale_ext.report_saleorder_custom
 msgid "Invoice validity date:"
-msgstr "Рахунок дійсний до "
+msgstr "Рахунок дійсний до"
 
 #. module: qweb_template_sale_ext
 #: model_terms:ir.ui.view,arch_db:qweb_template_sale_ext.report_saleorder_custom
@@ -130,19 +137,12 @@ msgstr "Одержувач:"
 #. module: qweb_template_sale_ext
 #: model_terms:ir.ui.view,arch_db:qweb_template_sale_ext.report_saleorder_custom
 msgid "SO0000"
-msgstr "SO0000"
+msgstr ""
 
 #. module: qweb_template_sale_ext
 #: model:ir.model,name:qweb_template_sale_ext.model_sale_order
 msgid "Sales Order"
 msgstr "Замовлення на продаж"
-
-#. module: qweb_template_sale_ext
-#: model_terms:ir.ui.view,arch_db:qweb_template_sale_ext.report_saleorder_custom
-msgid ""
-"Signed:\n"
-"                    <span>___________________________</span>"
-msgstr "Виписав:"
 
 #. module: qweb_template_sale_ext
 #: model_terms:ir.ui.view,arch_db:qweb_template_sale_ext.report_saleorder_custom
@@ -172,7 +172,7 @@ msgstr "від"
 #. module: qweb_template_sale_ext
 #: model_terms:ir.ui.view,arch_db:qweb_template_sale_ext.report_saleorder_custom
 msgid "p/p:"
-msgstr "p/p:"
+msgstr ""
 
 #. module: qweb_template_sale_ext
 #: model_terms:ir.ui.view,arch_db:qweb_template_sale_ext.report_saleorder_custom
