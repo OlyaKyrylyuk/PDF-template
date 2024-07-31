@@ -11,18 +11,18 @@
                 <table class="table without_border">
                     <tr>
                         <td width="20%" class="header_info_label">
-                            Постачальник:
+                            Provider:
                         </td>
                         <td>
                             <p class="doc_info">
                                 <t t-esc="doc.company_id.name"/>
                             </p>
                             <p class="doc_info">
-                                ЄДРПОУ:
+                                EDRPOU:
                                 <t t-esc="doc.company_id.edrpou"/>
                             </p>
                             <p class="doc_info">
-                                Телефон:
+                                Phone:
                                 <t t-esc="doc.company_id.phone"/>
                             </p>
 
@@ -34,52 +34,57 @@
                                             <t t-esc="bank.acc_number"/>
                                         </p>
                                         <p>
-                                            МФО:
+                                            <span>MFO</span>:
                                             <t t-esc="bank.bank_id.bic"/>
                                         </p>
                                     </t>
                                 </t>
                                 <t t-else="">
-                                    <p>p/p: Немає даних</p>
-                                    <p>МФО: Немає даних</p>
+                                    <p>p/p: No data</p>
+                                    <p>MFO: No data</p>
                                 </t>
                             </p>
 
                             <p class="doc_info">
-                                ІПН:
-                                <t t-esc="doc.company_id.vat"/>,
-                                номер свідоцтва:
-                                <t t-esc="doc.company_id.certificate_number"/>
+                                IPN:
+                                <t t-esc="doc.company_id.vat"/>,  <spacer size="5px" />
+                                Certificate Number:
+                                 <t t-esc="doc.company_id.certificate_number"/>
                             </p>
                         </td>
                     </tr>
 
                     <tr>
-                        <td width="20%" class="header_info_label">Одержувач:</td>
+                        <td width="20%" class="header_info_label">
+                            Receiver:
+                        </td>
                         <td>
                             <p>
                                 <t t-esc="doc.partner_id.name"/>
                             </p>
                             <p>
-                                тел:
+                                tel:
                                 <t t-esc="doc.partner_id.phone"/>
                             </p>
                         </td>
                     </tr>
                     <tr>
-                        <td width="20%" class="header_info_label">Платник:</td>
+                        <td width="20%" class="header_info_label">Payer:</td>
                         <td>
                             <div t-if="doc.partner_invoice_id == doc.partner_id">
-                                Той самий
+                                The same
                             </div>
                             <div t-else="">
-                                <p>Ім'я:
+                                <p>
+                                    Name:
                                     <span t-field="doc.partner_invoice_id.name"/>
                                 </p>
-                                <p>Адреса:
+                                <p>
+                                    Address:
                                     <span t-field="doc.partner_invoice_id.street"/>
                                 </p>
-                                <p>Телефон:
+                                <p>
+                                    Phone:
                                     <span t-field="doc.partner_invoice_id.phone"/>
                                 </p>
                             </div>
@@ -87,7 +92,9 @@
                     </tr>
 
                     <tr>
-                        <td width="20%" class="header_info_label">Замовлення:</td>
+                        <td width="20%" class="header_info_label">
+                            Order:
+                        </td>
                         <td></td>
                     </tr>
                 </table>
@@ -96,7 +103,7 @@
 
         <xpath expr="//h2[@class='mt-4']" position="replace">
             <div class="main_title">
-                <span>Рахунок-Фактура #</span>
+                <span>Invoice #</span>
                 <span t-field="doc.name">SO0000</span>
             </div>
         </xpath>
@@ -105,9 +112,9 @@
             <div t-if="doc.date_order" name="informations_date">
                 <div class="main_title">
                     <span>
-                        від
+                        from
                         <t t-esc="doc.get_formatted_date()"/>
-                        року
+                        year
                     </span>
                 </div>
             </div>
@@ -118,11 +125,21 @@
 
                 <tr>
                     <th>№</th>
-                    <th>Найменування</th>
-                    <th>Кіл-сть</th>
-                    <th>Од.вим.</th>
-                    <th>Ціна без ПДВ</th>
-                    <th>Сума без ПДВ</th>
+                    <th>
+                        Product Name
+                    </th>
+                    <th>
+                        Product Count
+                    </th>
+                    <th>
+                        Product Unit
+                    </th>
+                    <th>
+                        Product Price Without Vat
+                    </th>
+                    <th>
+                        Product Total Price Without Vat
+                    </th>
                 </tr>
                 <t t-foreach="doc.order_line" t-as="line">
                     <tr>
@@ -151,7 +168,9 @@
             <table class="total_table">
                 <tr>
                     <td>
-                        <p>Разом без ПДВ:</p>
+                        <p>
+                            Total Price Without Vat:
+                        </p>
                     </td>
                     <td class="text-right">
                         <t t-esc="doc.amount_untaxed"/>
@@ -159,7 +178,9 @@
                 </tr>
                 <tr>
                     <td>
-                        <p>ПДВ:</p>
+                        <p>
+                            Vat:
+                        </p>
                     </td>
                     <td class="text-right">
                         <t t-esc="doc.amount_tax"/>
@@ -167,7 +188,9 @@
                 </tr>
                 <tr>
                     <td>
-                        <p>Всього з ПДВ:</p>
+                        <p>
+                            Total Price With Vat:
+                        </p>
                     </td>
                     <td class="text-right">
                         <t t-esc="doc.amount_total"/>
@@ -179,12 +202,12 @@
         <xpath expr="//div[@name='so_total_summary']" position="replace">
             <div class="total_summary">
                 <p>
-                    Виписав:
+                    Signed:
                     <span>___________________________</span>
                     <t t-esc="doc.user_id.name"/>
                 </p>
                 <p>
-                    Рахунок дійсний до:
+                    Invoice validity date:
                     <t t-esc="doc.format_validity_date()"/>
                 </p>
             </div>
