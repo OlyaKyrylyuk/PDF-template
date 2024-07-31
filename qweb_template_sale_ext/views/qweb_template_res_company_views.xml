@@ -1,0 +1,13 @@
+<odoo>
+    <record id="qweb_template_sale_ext_view_company_form" model="ir.ui.view">
+        <field name="name">res.company.form.custom</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+        <field name="vat" position="after">
+            <field name="edrpou"/>
+            <field name="certificate_number"/>
+        </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,193 @@
+<odoo>
+    <template id="report_saleorder_custom" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@class='page']" position="before">
+            <link href="/qweb_template_sale_ext/static/src/css/qweb_template_sale_order.css" rel="stylesheet"/>
+        </xpath>
+        <xpath expr="//t[@t-set='address']" position="replace">
+        </xpath>
+        <xpath expr="//div[@class='page']" position="before">
+            <div>
+                <table class="table without_border">
+                    <tr>
+                        <td width="20%" class="header_info_label">
+                            Постачальник:
+                        </td>
+                        <td>
+                            <p class="doc_info">
+                                <t t-esc="doc.company_id.name"/>
+                            </p>
+                            <p class="doc_info">
+                                ЄДРПОУ:
+                                <t t-esc="doc.company_id.edrpou"/>
+                            </p>
+                            <p class="doc_info">
+                                Телефон:
+                                <t t-esc="doc.company_id.phone"/>
+                            </p>
+
+                            <p class="doc_info">
+                                <t t-if="doc.partner_id.bank_ids">
+                                    <t t-foreach="doc.company_id.bank_ids" t-as="bank">
+                                        <p>
+                                            p/p:
+                                            <t t-esc="bank.acc_number"/>
+                                        </p>
+                                        <p>
+                                            МФО:
+                                            <t t-esc="bank.bank_id.bic"/>
+                                        </p>
+                                    </t>
+                                </t>
+                                <t t-else="">
+                                    <p>p/p: Немає даних</p>
+                                    <p>МФО: Немає даних</p>
+                                </t>
+                            </p>
+
+                            <p class="doc_info">
+                                ІПН:
+                                <t t-esc="doc.company_id.vat"/>,
+                                номер свідоцтва:
+                                <t t-esc="doc.company_id.certificate_number"/>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="20%" class="header_info_label">Одержувач:</td>
+                        <td>
+                            <p>
+                                <t t-esc="doc.partner_id.name"/>
+                            </p>
+                            <p>
+                                тел:
+                                <t t-esc="doc.partner_id.phone"/>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="20%" class="header_info_label">Платник:</td>
+                        <td>
+                            <div t-if="doc.partner_invoice_id == doc.partner_id">
+                                Той самий
+                            </div>
+                            <div t-else="">
+                                <p>Ім'я:
+                                    <span t-field="doc.partner_invoice_id.name"/>
+                                </p>
+                                <p>Адреса:
+                                    <span t-field="doc.partner_invoice_id.street"/>
+                                </p>
+                                <p>Телефон:
+                                    <span t-field="doc.partner_invoice_id.phone"/>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="20%" class="header_info_label">Замовлення:</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </xpath>
+
+        <xpath expr="//h2[@class='mt-4']" position="replace">
+            <div class="main_title">
+                <span>Рахунок-Фактура #</span>
+                <span t-field="doc.name">SO0000</span>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@id='informations']" position="replace">
+            <div t-if="doc.date_order" name="informations_date">
+                <div class="main_title">
+                    <span>
+                        від
+                        <t t-esc="doc.get_formatted_date()"/>
+                        року
+                    </span>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//table[contains(@class, 'o_main_table')]" position="replace">
+            <table class="table table-sm orders_table">
+
+                <tr>
+                    <th>№</th>
+                    <th>Найменування</th>
+                    <th>Кіл-сть</th>
+                    <th>Од.вим.</th>
+                    <th>Ціна без ПДВ</th>
+                    <th>Сума без ПДВ</th>
+                </tr>
+                <t t-foreach="doc.order_line" t-as="line">
+                    <tr>
+                        <td>
+                            <t t-esc="line.sequence"/>
+                        </td>
+                        <td>
+                            <t t-esc="line.name"/>
+                        </td>
+                        <td>
+                            <t t-esc="line.product_uom_qty"/>
+                        </td>
+                        <td>
+                            <t t-esc="line.product_uom.name"/>
+                        </td>
+                        <td>
+                            <t t-esc="line.price_unit"/>
+                        </td>
+                        <td>
+                            <t t-esc="line.price_subtotal"/>
+                        </td>
+                    </tr>
+                </t>
+            </table>
+
+            <table class="total_table">
+                <tr>
+                    <td>
+                        <p>Разом без ПДВ:</p>
+                    </td>
+                    <td class="text-right">
+                        <t t-esc="doc.amount_untaxed"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>ПДВ:</p>
+                    </td>
+                    <td class="text-right">
+                        <t t-esc="doc.amount_tax"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Всього з ПДВ:</p>
+                    </td>
+                    <td class="text-right">
+                        <t t-esc="doc.amount_total"/>
+                    </td>
+                </tr>
+            </table>
+        </xpath>
+
+
+        <xpath expr="//div[@name='so_total_summary']" position="replace">
+            <div class="total_summary">
+                <p>
+                    Виписав:
+                    <span>___________________________</span>
+                    <t t-esc="doc.user_id.name"/>
+                </p>
+                <p>
+                    Рахунок дійсний до:
+                    <t t-esc="doc.format_validity_date()"/>
+                </p>
+            </div>
+        </xpath>
+    </template>
+</odoo>

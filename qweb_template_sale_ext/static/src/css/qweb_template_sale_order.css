@@ -1,0 +1,47 @@
+.without_border {
+    border: 1px solid white !important;
+}
+
+.header_info_label {
+    text-decoration: underline;
+}
+
+.main_title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.orders_table {
+    border: 1px solid black !important;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.orders_table th,
+.orders_table td {
+   border: 1px solid black;
+   padding: 8px;
+   text-align: left;
+}
+
+.total_table {
+    border: 1px solid white !important;
+    text-align: right;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.total_table_tr {
+    height: 25px !important;
+}
+
+.text-right {
+    padding-left: 50px;
+}
+.footer_user {
+    width: 100px;
+}
+
+.total_summary {
+    text-align: right;
+}
